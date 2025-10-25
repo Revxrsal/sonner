@@ -462,44 +462,52 @@ const Toast = (props: ToastProps) => {
           </div>
         ) : null}
       </div>
-      {React.isValidElement(toast.cancel) ? (
-        toast.cancel
-      ) : toast.cancel && isAction(toast.cancel) ? (
-        <button
-          data-button
-          data-cancel
-          style={toast.cancelButtonStyle || cancelButtonStyle}
-          onClick={(event) => {
-            // We need to check twice because typescript
-            if (!isAction(toast.cancel)) return;
-            if (!dismissible) return;
-            toast.cancel.onClick?.(event);
-            deleteToast();
-          }}
-          className={cn(classNames?.cancelButton, toast?.classNames?.cancelButton)}
+      {(toast.cancel || toast.action) && (
+        <div
+          className={cn(
+            classNames?.buttonsContainer,
+            toast?.classNames?.buttonsContainer
+          )}
         >
-          {toast.cancel.label}
-        </button>
-      ) : null}
-      {React.isValidElement(toast.action) ? (
-        toast.action
-      ) : toast.action && isAction(toast.action) ? (
-        <button
-          data-button
-          data-action
-          style={toast.actionButtonStyle || actionButtonStyle}
-          onClick={(event) => {
-            // We need to check twice because typescript
-            if (!isAction(toast.action)) return;
-            toast.action.onClick?.(event);
-            if (event.defaultPrevented) return;
-            deleteToast();
-          }}
-          className={cn(classNames?.actionButton, toast?.classNames?.actionButton)}
-        >
-          {toast.action.label}
-        </button>
-      ) : null}
+          {React.isValidElement(toast.cancel) ? (
+            toast.cancel
+          ) : toast.cancel && isAction(toast.cancel) ? (
+            <button
+              data-button
+              data-cancel
+              style={toast.cancelButtonStyle || cancelButtonStyle}
+              onClick={(event) => {
+                if (!isAction(toast.cancel)) return;
+                if (!dismissible) return;
+                toast.cancel.onClick?.(event);
+                deleteToast();
+              }}
+              className={cn(classNames?.cancelButton, toast?.classNames?.cancelButton)}
+            >
+              {toast.cancel.label}
+            </button>
+          ) : null}
+
+          {React.isValidElement(toast.action) ? (
+            toast.action
+          ) : toast.action && isAction(toast.action) ? (
+            <button
+              data-button
+              data-action
+              style={toast.actionButtonStyle || actionButtonStyle}
+              onClick={(event) => {
+                if (!isAction(toast.action)) return;
+                toast.action.onClick?.(event);
+                if (event.defaultPrevented) return;
+                deleteToast();
+              }}
+              className={cn(classNames?.actionButton, toast?.classNames?.actionButton)}
+            >
+              {toast.action.label}
+            </button>
+          ) : null}
+        </div>
+      )}
     </li>
   );
 };

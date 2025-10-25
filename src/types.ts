@@ -43,6 +43,7 @@ export interface ToastClassnames {
   default?: string;
   content?: string;
   icon?: string;
+  buttonsContainer?: string;
 }
 
 export interface ToastIcons {
