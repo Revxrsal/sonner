@@ -1,6 +1,6 @@
 {
-  "name": "sonner",
-  "version": "2.0.7",
+  "name": "@revxrsal/sonner",
+  "version": "2.0.8",
   "description": "An opinionated toast component for React.",
   "exports": {
     ".": {
@@ -42,10 +42,10 @@
   "homepage": "https://sonner.emilkowal.ski/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emilkowalski/sonner.git"
+    "url": "git+https://github.com/Revxrsal/sonner.git"
   },
   "bugs": {
-    "url": "https://github.com/emilkowalski/sonner/issues"
+    "url": "https://github.com/Revxrsal/sonner/issues"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
